@@ -1,20 +1,33 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# The Fed Chair - Deployment Guide
 
-# Run and deploy your AI Studio app
+This application is a React-based interactive browser game. To deploy it to Render using Docker, follow these steps:
 
-This contains everything you need to run your app locally.
+## Prerequisites
+- A GitHub account
+- A Render account (connected to your GitHub)
 
-View your app in AI Studio: https://ai.studio/apps/5fa9075d-5e03-4a15-8865-3dea1dc80fc0
+## Deployment Steps
 
-## Run Locally
+1. **Push to GitHub**: Upload this entire project directory to a new repository on GitHub.
+2. **Connect to Render**:
+   - Log in to your [Render Dashboard](https://dashboard.render.com/).
+   - Click **New +** and select **Web Service**.
+   - Connect your GitHub repository.
+   - Render should automatically detect the `Dockerfile` and `render.yaml`.
+3. **Configure Settings**:
+   - **Environment**: Docker
+   - **Port**: 80 (Render usually detects this automatically from the Dockerfile)
+4. **Deploy**: Click **Create Web Service**.
 
-**Prerequisites:**  Node.js
+## Docker Configuration
+- **Dockerfile**: Uses a multi-stage build to compile the React app and serve it using Nginx.
+- **nginx.conf**: Configured to serve static files and handle client-side routing.
+- **render.yaml**: A Blueprint file that pre-configures the service settings for Render.
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Local Testing
+If you have Docker installed locally, you can test the build with:
+```bash
+docker build -t the-fed-chair .
+docker run -p 8080:80 the-fed-chair
+```
+Then visit `http://localhost:8080` in your browser.
