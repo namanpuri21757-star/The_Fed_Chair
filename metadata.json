@@ -1,0 +1,5 @@
+{
+  "name": "The Fed Chair",
+  "description": "A monetary policy simulator for AP Economics students. Manage inflation and unemployment as the Chair of the Federal Reserve.",
+  "requestFramePermissions": []
+}
